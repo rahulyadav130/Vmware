@@ -1,0 +1,1 @@
+systool -a -v -c scsi_host| egrep -i "CLASS Device|model|version|proc_name|info|fwrev"
