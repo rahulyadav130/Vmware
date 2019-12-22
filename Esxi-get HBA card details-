@@ -1,1 +1,25 @@
 systool -a -v -c scsi_host| egrep -i "CLASS Device|model|version|proc_name|info|fwrev"
+
+
+
+# modules check
+esxcli system module list --enabled=true | grep lpfc
+
+
+# update HBA firmware packages Vmware
+esxcli software vib update -d "/vmfs/volumes/P1_VMware_CLS2_LUN2/patch/ESXi600-201903001.zip"
+
+# list storage adoptor
+esxcli storage core adapter list
+
+
+## How to update HBA driver on vmware
+
+
+HBA driver##
+1. upload the file (offline-bundle.zip) in any datastore
+2. put the host in maintenance .
+to install the vib file: 
+3. esxcli software vib install –d /path/offline-bundle.zip
+4. esxcli software vib install -d "/vmfs/volumes/P1_VMware_CLS2_LUN3/patch/VMW-ESX-6.0.0-lpfc-11.4.329.0-offline_bundle-8138239.zip"
+5. Reboot & Enjoy
